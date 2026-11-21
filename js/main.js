@@ -658,7 +658,7 @@ const DISTROS_DATA = [
         name: "Debian",
         family: "Debian",
         category: "server",
-        badge: "Fondasi Batu Karang",
+        badge: "Fondasi Kernel",
         pkg: "apt / dpkg",
         de: "Bebas pilih (GNOME, XFCE)",
         desc: "Dikenal sangat konservatif dan stabil tanpa crash. Menjadi induk dari Ubuntu dan ratusan distro lainnya.",
