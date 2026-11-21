@@ -8,7 +8,7 @@
 // 0. AUTH GUARD — Redirect to login if not authenticated
 // ==========================================
 (function() {
-    const isLoginPage = window.location.pathname.endsWith('login.html');
+    const isLoginPage = window.location.pathname.endsWith('login.html') || window.location.pathname.endsWith('/login');
     const isAuthenticated = sessionStorage.getItem('linuxedu_auth') === '1';
     if (!isLoginPage && !isAuthenticated) {
         window.location.replace('login.html');
@@ -626,7 +626,15 @@ const DISTROS_DATA = [
         pkg: "apt / snap",
         de: "GNOME kustom",
         desc: "Standar emas bagi pemula dan pengembang web. Didukung dokumentasi melimpah di internet.",
-        target: "Pemula, Developer Web, Mahasiswa"
+        target: "Pemula, Developer Web, Mahasiswa",
+        lahir: "2004",
+        rilis: "LTS setiap 2 tahun (5 thn dukungan)",
+        ram_idle: "~600 MB",
+        cmd_instal: "sudo apt install <nama-paket>",
+        cmd_update: "sudo apt update && sudo apt upgrade",
+        fakta: "Ubuntu berasal dari kata Afrika Selatan yang bermakna 'kemanusiaan untuk sesama'. Digunakan di lebih dari 55% server cloud publik.",
+        kelebihan: ["Dokumentasi terlengkap", "Driver hardware otomatis", "Snap Store terintegrasi"],
+        kekurangan: ["Snap kadang lambat", "GNOME cukup berat di RAM"]
     },
     {
         name: "Linux Mint",
@@ -636,7 +644,15 @@ const DISTROS_DATA = [
         pkg: "apt / Flatpak",
         de: "Cinnamon",
         desc: "Tampilan desktop yang sangat familiar bagi pengguna Windows. Siap pakai langsung tanpa setup rumit.",
-        target: "Eks-Pengguna Windows, Pemula"
+        target: "Eks-Pengguna Windows, Pemula",
+        lahir: "2006",
+        rilis: "Mengikuti siklus Ubuntu LTS",
+        ram_idle: "~500 MB",
+        cmd_instal: "sudo apt install <nama-paket>",
+        cmd_update: "sudo apt update && sudo apt upgrade",
+        fakta: "Linux Mint secara konsisten menempati posisi #1 DistroWatch untuk distro paling banyak diunduh selama bertahun-tahun.",
+        kelebihan: ["Tampilan mirip Windows 7/10", "Codec multimedia sudah terinstal", "Update manager yang aman"],
+        kekurangan: ["Rilis agak lambat", "Snap tidak disertakan secara default"]
     },
     {
         name: "Debian",
@@ -646,7 +662,15 @@ const DISTROS_DATA = [
         pkg: "apt / dpkg",
         de: "Bebas pilih (GNOME, XFCE)",
         desc: "Dikenal sangat konservatif dan stabil tanpa crash. Menjadi induk dari Ubuntu dan ratusan distro lainnya.",
-        target: "Server Produksi, Sysadmin, Kestabilan"
+        target: "Server Produksi, Sysadmin, Kestabilan",
+        lahir: "1993",
+        rilis: "Setiap ~2 tahun (paket sangat konservatif)",
+        ram_idle: "~350 MB",
+        cmd_instal: "sudo apt install <nama-paket>",
+        cmd_update: "sudo apt update && sudo apt full-upgrade",
+        fakta: "Debian adalah salah satu distro tertua yang masih aktif. Ubuntu, Kali, dan ratusan distro lain adalah turunan langsungnya.",
+        kelebihan: ["Sangat stabil untuk server", "Bebas software non-free opsional", "Komunitas besar sejak 1993"],
+        kekurangan: ["Paket bisa jauh tertinggal versinya", "Instalasi lebih manual"]
     },
     {
         name: "Fedora Workstation",
@@ -656,7 +680,15 @@ const DISTROS_DATA = [
         pkg: "dnf / Flatpak",
         de: "Vanilla GNOME",
         desc: "Selalu membawa teknologi Linux terdepan (Wayland, PipeWire). Digunakan langsung oleh Linus Torvalds.",
-        target: "Software Engineer, Kontributor Open Source"
+        target: "Software Engineer, Kontributor Open Source",
+        lahir: "2003",
+        rilis: "Setiap ~6 bulan (13 bulan dukungan)",
+        ram_idle: "~650 MB",
+        cmd_instal: "sudo dnf install <nama-paket>",
+        cmd_update: "sudo dnf upgrade --refresh",
+        fakta: "Fedora adalah 'laboratorium inovasi' Red Hat. Teknologi yang lolos uji di Fedora akan masuk ke RHEL (Red Hat Enterprise Linux).",
+        kelebihan: ["Selalu paket terbaru", "Wayland & PipeWire by default", "SELinux aktif untuk keamanan"],
+        kekurangan: ["Siklus rilis pendek, perlu upgrade rutin", "Dukungan codec proprietary terbatas"]
     },
     {
         name: "Arch Linux",
@@ -666,7 +698,15 @@ const DISTROS_DATA = [
         pkg: "pacman / AUR",
         de: "Pilihan pengguna (Minimalis)",
         desc: "Instalasi manual dari command line. Memberi pemahaman mendalam tentang setiap baut dan mur di OS Anda.",
-        target: "Pengguna Mahir, Penggemar Kustomisasi"
+        target: "Pengguna Mahir, Penggemar Kustomisasi",
+        lahir: "2002",
+        rilis: "Rolling — tidak ada versi mayor, selalu terbaru",
+        ram_idle: "~80 MB (tanpa DE)",
+        cmd_instal: "sudo pacman -S <nama-paket>",
+        cmd_update: "sudo pacman -Syu",
+        fakta: "Arch Wiki adalah sumber dokumentasi Linux terlengkap di internet — bahkan pengguna distro lain pun sering merujuk ke sana.",
+        kelebihan: ["Selalu software terbaru", "AUR: ribuan paket komunitas", "Kontrol penuh atas setiap komponen"],
+        kekurangan: ["Instalasi awal sangat kompleks", "Update bisa membreak sistem jika tidak teliti"]
     },
     {
         name: "Kali Linux",
@@ -676,7 +716,15 @@ const DISTROS_DATA = [
         pkg: "apt",
         de: "XFCE / GNOME",
         desc: "Dilengkapi lebih dari 600 perangkat pengujian penetrasi dan analisis forensik digital out-of-the-box.",
-        target: "Penetration Tester, Praktisi Cyber Security"
+        target: "Penetration Tester, Praktisi Cyber Security",
+        lahir: "2013",
+        rilis: "Rolling (berbasis Debian Testing)",
+        ram_idle: "~500 MB",
+        cmd_instal: "sudo apt install <nama-paket>",
+        cmd_update: "sudo apt update && sudo apt full-upgrade",
+        fakta: "Kali Linux bukan untuk penggunaan desktop harian. Ia dirancang khusus sebagai platform pengujian keamanan jaringan dan forensik digital.",
+        kelebihan: ["600+ tools security preinstalled", "Mode live USB tanpa instalasi", "Dukungan ARM & Raspberry Pi"],
+        kekurangan: ["Bukan untuk pemula", "Tidak ideal sebagai OS harian", "Perlu hati-hati soal legalitas penggunaan"]
     },
     {
         name: "Xubuntu / Lubuntu",
@@ -686,7 +734,15 @@ const DISTROS_DATA = [
         pkg: "apt",
         de: "XFCE / LXQt",
         desc: "Hanya butuh RAM 512MB-1GB saat idle. Menghidupkan kembali laptop lama yang lambat di Windows.",
-        target: "PC Spek Rendah, Komputer Lama"
+        target: "PC Spek Rendah, Komputer Lama",
+        lahir: "2006 / 2008",
+        rilis: "Mengikuti siklus Ubuntu LTS",
+        ram_idle: "~220–350 MB",
+        cmd_instal: "sudo apt install <nama-paket>",
+        cmd_update: "sudo apt update && sudo apt upgrade",
+        fakta: "Lubuntu menggunakan LXQt — salah satu desktop environment paling ringan. Bisa berjalan di komputer dengan RAM hanya 512MB.",
+        kelebihan: ["RAM sangat efisien", "Berbasis Ubuntu (ekosistem luas)", "Cocok untuk PC 32-bit lama"],
+        kekurangan: ["Tampilan kurang modern", "Fitur lebih terbatas dari Ubuntu penuh"]
     }
 ];
 
@@ -709,35 +765,85 @@ function filterDistros(cat) {
     const filtered = cat === 'all' ? DISTROS_DATA : DISTROS_DATA.filter(d => d.category === cat || (cat === 'beginner' && (d.category === 'beginner')));
 
     container.innerHTML = filtered.map(d => `
-        <div class="distro-card p-6 rounded-2xl bg-brand-card border border-brand-border space-y-4 flex flex-col justify-between shadow-sm">
-            <div class="space-y-3">
-                <div class="flex items-center justify-between text-xs font-mono">
-                    <span class="px-2.5 py-0.5 rounded-full bg-brand-surface border border-brand-border text-brand-amber font-bold">${d.badge}</span>
-                    <span class="text-brand-muted font-sans text-[11px]">${d.family} Base</span>
+        <div class="distro-card bg-brand-card border border-brand-border flex flex-col justify-between overflow-hidden">
+            <!-- Card Header -->
+            <div class="p-6 space-y-4">
+                <div class="flex items-start justify-between gap-2 text-xs font-mono">
+                    <span class="px-2.5 py-0.5 bg-brand-surface border border-brand-border text-brand-amber font-bold leading-relaxed">${d.badge}</span>
+                    <span class="text-brand-muted font-sans text-[11px] shrink-0 pt-0.5">${d.family} Base</span>
                 </div>
-                <h3 class="text-2xl font-bold text-brand-ink">${d.name}</h3>
-                <p class="text-xs text-brand-grayText leading-relaxed">${d.desc}</p>
-                
-                <div class="space-y-1.5 pt-2 text-xs font-mono">
-                    <div class="flex justify-between border-b border-brand-border/60 pb-1">
-                        <span class="text-brand-muted">Package Manager:</span>
+                <div>
+                    <h3 class="text-2xl font-bold font-serif text-brand-ink">${d.name}</h3>
+                    <p class="text-xs text-brand-grayText leading-relaxed mt-1.5">${d.desc}</p>
+                </div>
+
+                <!-- Specs Table -->
+                <div class="space-y-1.5 pt-1 text-xs font-mono border-t border-brand-border/60">
+                    <div class="flex justify-between pt-2">
+                        <span class="text-brand-muted">Package Manager</span>
                         <span class="text-brand-amber font-bold">${d.pkg}</span>
                     </div>
-                    <div class="flex justify-between border-b border-brand-border/60 pb-1">
-                        <span class="text-brand-muted">Default Desktop:</span>
+                    <div class="flex justify-between">
+                        <span class="text-brand-muted">Default Desktop</span>
                         <span class="text-brand-ink">${d.de}</span>
                     </div>
-                    <div class="flex justify-between pt-1">
-                        <span class="text-brand-muted">Cocok Untuk:</span>
-                        <span class="text-brand-grayText font-sans text-right">${d.target}</span>
+                    <div class="flex justify-between">
+                        <span class="text-brand-muted">RAM Idle</span>
+                        <span class="text-brand-ink">${d.ram_idle}</span>
                     </div>
+                    <div class="flex justify-between">
+                        <span class="text-brand-muted">Lahir</span>
+                        <span class="text-brand-ink">${d.lahir}</span>
+                    </div>
+                    <div class="flex justify-between pb-1">
+                        <span class="text-brand-muted">Cocok Untuk</span>
+                        <span class="text-brand-grayText font-sans text-right max-w-[55%]">${d.target}</span>
+                    </div>
+                </div>
+
+                <!-- Commands -->
+                <div class="space-y-1.5 pt-1">
+                    <div class="text-[10px] font-mono text-brand-muted uppercase tracking-wider font-bold">Perintah Utama</div>
+                    <div class="p-2.5 bg-[#1F1A16] font-mono text-xs space-y-1 rounded-sm">
+                        <div>
+                            <span class="text-[#88796B]"># Instal: </span>
+                            <span class="text-[#E5A842] select-all">${d.cmd_instal}</span>
+                        </div>
+                        <div>
+                            <span class="text-[#88796B]"># Update: </span>
+                            <span class="text-[#E5A842] select-all">${d.cmd_update}</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Pro/Con -->
+                <div class="grid grid-cols-2 gap-3 pt-1">
+                    <div class="space-y-1">
+                        <div class="text-[10px] font-mono text-brand-green font-bold uppercase tracking-wider">✓ Kelebihan</div>
+                        <ul class="space-y-1">
+                            ${d.kelebihan.map(k => `<li class="text-[11px] text-brand-grayText font-sans flex items-start gap-1.5"><span class="text-brand-green shrink-0 mt-0.5">+</span>${k}</li>`).join('')}
+                        </ul>
+                    </div>
+                    <div class="space-y-1">
+                        <div class="text-[10px] font-mono text-red-600 font-bold uppercase tracking-wider">✗ Tantangan</div>
+                        <ul class="space-y-1">
+                            ${d.kekurangan.map(k => `<li class="text-[11px] text-brand-grayText font-sans flex items-start gap-1.5"><span class="text-red-400 shrink-0 mt-0.5">−</span>${k}</li>`).join('')}
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Fun Fact -->
+                <div class="p-3 bg-brand-cardAlt border-l-2 border-brand-amber">
+                    <div class="text-[10px] font-mono font-bold text-brand-amber mb-1 uppercase tracking-wider">Tahukah Kamu?</div>
+                    <p class="text-[11px] text-brand-grayText font-sans leading-relaxed">${d.fakta}</p>
                 </div>
             </div>
 
-            <div class="pt-4 mt-2 border-t border-brand-border/60">
-                <button onclick="runCmd('echo Memilih distro ${d.name} dengan paket ${d.pkg}')" class="w-full py-2 rounded-lg bg-brand-surface hover:bg-brand-amber hover:text-white transition border border-brand-border text-xs font-mono text-brand-grayText flex items-center justify-center gap-2 font-medium">
-                    <i class="fa-solid fa-code text-xs"></i> Latihan Paket Ini di Modul 4
-                </button>
+            <!-- Card Footer -->
+            <div class="px-6 pb-6 pt-4 border-t border-brand-border">
+                <div class="text-[10px] font-mono text-brand-muted uppercase tracking-wider text-center">
+                    Rilis: ${d.rilis}
+                </div>
             </div>
         </div>
     `).join('');
@@ -816,9 +922,141 @@ function downloadCertificateSVG() {
 }
 
 // ==========================================
+// 6.5. LOGOUT & AUTH NAVIGATION HANDLER
+// ==========================================
+function handleLogout() {
+    if (confirm('Yakin ingin keluar dari LINUX.EDU?')) {
+        sessionStorage.removeItem('linuxedu_auth');
+        showToast('Berhasil keluar. Sampai jumpa!');
+        setTimeout(() => {
+            window.location.replace('login.html');
+        }, 600);
+    }
+}
+
+function initAuthNav() {
+    const isAuth = sessionStorage.getItem('linuxedu_auth') === '1';
+
+    // 1. Desktop slot
+    const authNavSlot = document.getElementById('auth-nav-slot');
+    if (authNavSlot) {
+        if (isAuth) {
+            authNavSlot.innerHTML = `
+                <a href="login.html" title="Detail Akun" class="inline-flex items-center gap-1.5 px-2.5 py-1.5 rounded-sm border border-brand-border bg-brand-surface text-brand-ink font-mono text-xs hover:border-brand-amber transition-colors">
+                    <i class="fa-solid fa-circle-user text-xs text-brand-green"></i>
+                    <span class="font-bold">admin</span>
+                </a>
+                <button onclick="handleLogout()" title="Keluar dari akun" class="px-2 py-1.5 rounded-sm text-brand-muted hover:text-red-600 hover:bg-red-50 font-mono text-xs transition-colors flex items-center gap-1 border border-transparent hover:border-red-200">
+                    <i class="fa-solid fa-right-from-bracket text-[11px]"></i>
+                    <span class="hidden lg:inline">Keluar</span>
+                </button>
+            `;
+        } else {
+            authNavSlot.innerHTML = `
+                <a href="login.html" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-sm bg-brand-amber text-white font-mono font-bold text-xs hover:bg-brand-ink transition-colors shadow-sm">
+                    <i class="fa-solid fa-right-to-bracket text-[11px]"></i>
+                    <span>Login</span>
+                </a>
+            `;
+        }
+    } else {
+        // Fallback for header actions if slot not yet in static markup
+        const actionsDiv = document.querySelector('header .flex.items-center.gap-2');
+        if (actionsDiv) {
+            const fallbackSlot = document.createElement('div');
+            fallbackSlot.id = 'auth-nav-slot';
+            fallbackSlot.className = 'flex items-center gap-1.5';
+            if (isAuth) {
+                fallbackSlot.innerHTML = `
+                    <a href="login.html" title="Detail Akun" class="inline-flex items-center gap-1.5 px-2.5 py-1.5 rounded-sm border border-brand-border bg-brand-surface text-brand-ink font-mono text-xs hover:border-brand-amber transition-colors">
+                        <i class="fa-solid fa-circle-user text-xs text-brand-green"></i>
+                        <span class="font-bold">admin</span>
+                    </a>
+                    <button onclick="handleLogout()" title="Keluar dari akun" class="px-2 py-1.5 rounded-sm text-brand-muted hover:text-red-600 hover:bg-red-50 font-mono text-xs transition-colors flex items-center gap-1 border border-transparent hover:border-red-200">
+                        <i class="fa-solid fa-right-from-bracket text-[11px]"></i>
+                    </button>
+                `;
+            } else {
+                fallbackSlot.innerHTML = `
+                    <a href="login.html" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-sm bg-brand-amber text-white font-mono font-bold text-xs hover:bg-brand-ink transition-colors shadow-sm">
+                        <i class="fa-solid fa-right-to-bracket text-[11px]"></i>
+                        <span>Login</span>
+                    </a>
+                `;
+            }
+            actionsDiv.insertBefore(fallbackSlot, actionsDiv.firstChild);
+        }
+    }
+
+    // 2. Mobile drawer slot
+    const mobileAuthSlot = document.getElementById('mobile-auth-slot');
+    if (mobileAuthSlot) {
+        if (isAuth) {
+            mobileAuthSlot.innerHTML = `
+                <div class="space-y-1">
+                    <a href="login.html" class="block px-3 py-2 rounded-sm text-brand-ink hover:bg-brand-card flex items-center justify-between">
+                        <span class="flex items-center gap-2">
+                            <i class="fa-solid fa-circle-user text-brand-green text-xs"></i>
+                            <span>Akun: <strong>admin</strong></span>
+                        </span>
+                        <span class="text-[10px] text-brand-green bg-green-50 px-1.5 py-0.5 border border-green-200 uppercase font-bold">Aktif</span>
+                    </a>
+                    <button onclick="handleLogout()" class="w-full text-left block px-3 py-2 rounded-sm text-red-600 hover:bg-red-50 flex items-center gap-2">
+                        <i class="fa-solid fa-right-from-bracket text-[11px]"></i>
+                        <span>Keluar dari Akun</span>
+                    </button>
+                </div>
+            `;
+        } else {
+            mobileAuthSlot.innerHTML = `
+                <a href="login.html" class="block px-3 py-2 rounded-sm bg-brand-amber text-white font-bold flex items-center gap-2">
+                    <i class="fa-solid fa-right-to-bracket text-[11px]"></i>
+                    <span>Masuk / Login</span>
+                </a>
+            `;
+        }
+    } else {
+        const drawer = document.getElementById('mobile-drawer');
+        if (drawer) {
+            const fallbackMobile = document.createElement('div');
+            fallbackMobile.id = 'mobile-auth-slot';
+            fallbackMobile.className = 'pt-2 mt-2 border-t border-brand-border';
+            if (isAuth) {
+                fallbackMobile.innerHTML = `
+                    <div class="space-y-1">
+                        <a href="login.html" class="block px-3 py-2 rounded-sm text-brand-ink hover:bg-brand-card flex items-center justify-between">
+                            <span class="flex items-center gap-2">
+                                <i class="fa-solid fa-circle-user text-brand-green text-xs"></i>
+                                <span>Akun: <strong>admin</strong></span>
+                            </span>
+                            <span class="text-[10px] text-brand-green bg-green-50 px-1.5 py-0.5 border border-green-200 uppercase font-bold">Aktif</span>
+                        </a>
+                        <button onclick="handleLogout()" class="w-full text-left block px-3 py-2 rounded-sm text-red-600 hover:bg-red-50 flex items-center gap-2">
+                            <i class="fa-solid fa-right-from-bracket text-[11px]"></i>
+                            <span>Keluar dari Akun</span>
+                        </button>
+                    </div>
+                `;
+            } else {
+                fallbackMobile.innerHTML = `
+                    <a href="login.html" class="block px-3 py-2 rounded-sm bg-brand-amber text-white font-bold flex items-center gap-2">
+                        <i class="fa-solid fa-right-to-bracket text-[11px]"></i>
+                        <span>Masuk / Login</span>
+                    </a>
+                `;
+            }
+            drawer.appendChild(fallbackMobile);
+        }
+    }
+}
+
+// ==========================================
 // 7. INITIALIZATION ON DOM READY
 // ==========================================
 document.addEventListener('DOMContentLoaded', () => {
+    // 0. Initialize Auth Navigation
+    initAuthNav();
+
     // 1. Mobile menu toggle
     const mobileBtn = document.getElementById('mobile-menu-btn');
     const mobileDrawer = document.getElementById('mobile-drawer');
