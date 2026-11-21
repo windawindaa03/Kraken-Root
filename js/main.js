@@ -5,6 +5,17 @@
  */
 
 // ==========================================
+// 0. AUTH GUARD — Redirect to login if not authenticated
+// ==========================================
+(function() {
+    const isLoginPage = window.location.pathname.endsWith('login.html');
+    const isAuthenticated = sessionStorage.getItem('linuxedu_auth') === '1';
+    if (!isLoginPage && !isAuthenticated) {
+        window.location.replace('login.html');
+    }
+})();
+
+// ==========================================
 // 1. CURRICULUM PROGRESS TRACKER (localStorage)
 // ==========================================
 const LinuxEduTracker = {

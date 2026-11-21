@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login — LINUX.EDU</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700;9..144,800&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            dark: '#F6F3EC',
+                            surface: '#EDE6DA',
+                            card: '#FFFFFF',
+                            cardAlt: '#F4EFE6',
+                            border: '#DDD3C1',
+                            amber: '#B85D19',
+                            amberLight: '#D47530',
+                            green: '#3E6548',
+                            greenLight: '#527F5D',
+                            ink: '#2B231D',
+                            grayText: '#63574B',
+                            muted: '#88796B'
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        serif: ['Fraunces', 'Georgia', 'serif'],
+                        mono: ['JetBrains Mono', 'monospace']
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-brand-dark text-brand-ink font-sans antialiased min-h-screen flex items-center justify-center px-4">
+
+    <div class="w-full max-w-sm space-y-8">
+
+        <!-- Brand -->
+        <div class="text-center space-y-1">
+            <a href="#" class="inline-flex items-center gap-2.5 font-mono text-base font-bold tracking-wider text-brand-ink">
+                <span class="w-9 h-9 rounded-sm bg-brand-surface border border-brand-border flex items-center justify-center text-brand-amber">
+                    <i class="fa-solid fa-terminal text-sm"></i>
+                </span>
+                <span>LINUX<span class="text-brand-amber">.EDU</span></span>
+            </a>
+            <p class="text-xs text-brand-muted font-mono pt-1">Platform Kurikulum Linux Terbuka</p>
+        </div>
+
+        <!-- Login Card -->
+        <div class="bg-brand-card border border-brand-border shadow-sm">
+            <!-- Card Header -->
+            <div class="px-8 pt-8 pb-6 border-b border-brand-border">
+                <h1 class="text-xl font-bold font-serif text-brand-ink">Masuk ke Akun Anda</h1>
+                <p class="text-xs text-brand-grayText mt-1">Lanjutkan perjalanan belajar Linux Anda.</p>
+            </div>
+
+            <!-- Form -->
+            <form id="login-form" onsubmit="handleLogin(event)" class="px-8 py-6 space-y-5">
+                <!-- Error Message -->
+                <div id="login-error" class="hidden px-4 py-3 bg-red-50 border border-red-200 text-red-700 text-xs font-mono flex items-center gap-2">
+                    <i class="fa-solid fa-circle-exclamation shrink-0"></i>
+                    <span id="login-error-msg">Username atau password salah.</span>
+                </div>
+
+                <!-- Username Field -->
+                <div class="space-y-1.5">
+                    <label for="username" class="block text-xs font-mono font-bold text-brand-grayText uppercase tracking-wider">Username</label>
+                    <div class="relative">
+                        <span class="absolute inset-y-0 left-3 flex items-center text-brand-muted text-xs">
+                            <i class="fa-solid fa-user"></i>
+                        </span>
+                        <input
+                            type="text"
+                            id="username"
+                            name="username"
+                            autocomplete="username"
+                            placeholder="Masukkan username"
+                            class="w-full pl-9 pr-4 py-3 bg-brand-surface border border-brand-border text-brand-ink text-sm font-sans placeholder:text-brand-muted focus:outline-none focus:border-brand-amber transition-colors"
+                            required
+                        >
+                    </div>
+                </div>
+
+                <!-- Password Field -->
+                <div class="space-y-1.5">
+                    <label for="password" class="block text-xs font-mono font-bold text-brand-grayText uppercase tracking-wider">Password</label>
+                    <div class="relative">
+                        <span class="absolute inset-y-0 left-3 flex items-center text-brand-muted text-xs">
+                            <i class="fa-solid fa-lock"></i>
+                        </span>
+                        <input
+                            type="password"
+                            id="password"
+                            name="password"
+                            autocomplete="current-password"
+                            placeholder="••••••••••"
+                            class="w-full pl-9 pr-11 py-3 bg-brand-surface border border-brand-border text-brand-ink text-sm font-sans placeholder:text-brand-muted focus:outline-none focus:border-brand-amber transition-colors"
+                            required
+                        >
+                        <button type="button" onclick="togglePassword()" class="absolute inset-y-0 right-3 flex items-center text-brand-muted hover:text-brand-ink transition-colors" tabindex="-1" aria-label="Toggle password visibility">
+                            <i id="pw-eye-icon" class="fa-solid fa-eye text-xs"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Submit Button -->
+                <button
+                    type="submit"
+                    id="login-btn"
+                    class="w-full py-3 bg-brand-amber text-white font-bold font-mono text-sm hover:bg-brand-amberLight transition-colors flex items-center justify-center gap-2 mt-2"
+                >
+                    <span id="login-btn-text">Masuk</span>
+                    <i id="login-btn-icon" class="fa-solid fa-arrow-right text-xs"></i>
+                </button>
+            </form>
+        </div>
+
+        <!-- Footer note -->
+        <p class="text-center text-[11px] text-brand-muted font-mono">
+            LINUX.EDU &copy; 2026 — Kurikulum Terbuka
+        </p>
+    </div>
+
+    <script>
+        // ── Auth Logic ──────────────────────────────────────────────
+        // Credentials are intentionally NOT visible in the UI.
+        // They are stored here for demo purposes only.
+        const AUTH = {
+            u: atob('YWRtaW4='),          // admin
+            p: atob('bGludXhlZHUyMDI2')   // linuxedu2026
+        };
+
+        function handleLogin(e) {
+            e.preventDefault();
+            const username = document.getElementById('username').value.trim();
+            const password = document.getElementById('password').value;
+            const errorEl = document.getElementById('login-error');
+            const errorMsg = document.getElementById('login-error-msg');
+            const btn = document.getElementById('login-btn');
+            const btnText = document.getElementById('login-btn-text');
+            const btnIcon = document.getElementById('login-btn-icon');
+
+            // Loading state
+            btn.disabled = true;
+            btnText.textContent = 'Memverifikasi...';
+            btnIcon.className = 'fa-solid fa-spinner fa-spin text-xs';
+            errorEl.classList.add('hidden');
+
+            setTimeout(() => {
+                if (username === AUTH.u && password === AUTH.p) {
+                    // Success
+                    btnText.textContent = 'Berhasil!';
+                    btnIcon.className = 'fa-solid fa-circle-check text-xs';
+                    btn.classList.add('bg-brand-green');
+                    btn.classList.remove('bg-brand-amber', 'hover:bg-brand-amberLight');
+
+                    // Save session flag & redirect
+                    sessionStorage.setItem('linuxedu_auth', '1');
+                    setTimeout(() => {
+                        window.location.href = 'index.html';
+                    }, 700);
+                } else {
+                    // Error
+                    errorMsg.textContent = username === AUTH.u
+                        ? 'Password yang Anda masukkan salah.'
+                        : 'Username tidak ditemukan.';
+                    errorEl.classList.remove('hidden');
+
+                    // Shake animation
+                    const form = document.getElementById('login-form');
+                    form.classList.add('animate-shake');
+                    setTimeout(() => form.classList.remove('animate-shake'), 400);
+
+                    btn.disabled = false;
+                    btnText.textContent = 'Masuk';
+                    btnIcon.className = 'fa-solid fa-arrow-right text-xs';
+                }
+            }, 600);
+        }
+
+        function togglePassword() {
+            const pwInput = document.getElementById('password');
+            const eyeIcon = document.getElementById('pw-eye-icon');
+            if (pwInput.type === 'password') {
+                pwInput.type = 'text';
+                eyeIcon.className = 'fa-solid fa-eye-slash text-xs';
+            } else {
+                pwInput.type = 'password';
+                eyeIcon.className = 'fa-solid fa-eye text-xs';
+            }
+        }
+
+        // Check if already logged in
+        if (sessionStorage.getItem('linuxedu_auth') === '1') {
+            window.location.href = 'index.html';
+        }
+    </script>
+
+    <style>
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            20%, 60% { transform: translateX(-6px); }
+            40%, 80% { transform: translateX(6px); }
+        }
+        .animate-shake { animation: shake 0.4s ease-in-out; }
+    </style>
+</body>
+</html>

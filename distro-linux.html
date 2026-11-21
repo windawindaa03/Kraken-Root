@@ -199,6 +199,164 @@
             </div>
         </div>
 
+        <!-- MATERI: APA ITU PACKAGE MANAGER? -->
+        <div class="space-y-6">
+            <div class="flex flex-col md:flex-row md:items-end justify-between gap-6 border-b border-brand-border pb-6">
+                <div>
+                    <div class="border-l-2 border-brand-amber pl-3 text-brand-amber font-mono text-xs font-bold uppercase tracking-wider mb-3">KONSEP INTI</div>
+                    <h2 class="text-2xl sm:text-3xl font-bold font-serif text-brand-ink">Package Manager: Jantung Setiap Distro</h2>
+                </div>
+                <p class="text-sm text-brand-grayText max-w-sm leading-relaxed">Cara Anda menginstal software adalah perbedaan paling praktis antar keluarga distro.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-0 border border-brand-border">
+                <!-- apt -->
+                <div class="p-6 border-b md:border-b-0 md:border-r border-brand-border space-y-3">
+                    <div class="font-mono text-xs text-brand-amber font-bold uppercase">Keluarga Debian / Ubuntu</div>
+                    <h3 class="text-lg font-bold font-serif text-brand-ink">APT — Advanced Package Tool</h3>
+                    <p class="text-xs text-brand-grayText leading-relaxed">
+                        Manajer paket berbasis repositori <code class="text-brand-amber font-mono font-bold">.deb</code>. Unduh, verifikasi, dan instalasi software hanya dengan satu baris perintah.
+                    </p>
+                    <div class="mt-4 space-y-2 font-mono text-xs">
+                        <div class="p-2.5 bg-[#1F1A16] text-[#E5A842] rounded-sm">
+                            <span class="text-[#88796B]"># Instal software</span><br>
+                            <span>sudo apt install nginx</span>
+                        </div>
+                        <div class="p-2.5 bg-[#1F1A16] text-[#E5A842] rounded-sm">
+                            <span class="text-[#88796B]"># Update semua paket</span><br>
+                            <span>sudo apt update && apt upgrade</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- dnf -->
+                <div class="p-6 border-b md:border-b-0 md:border-r border-brand-border space-y-3">
+                    <div class="font-mono text-xs text-brand-green font-bold uppercase">Keluarga Fedora / RHEL</div>
+                    <h3 class="text-lg font-bold font-serif text-brand-ink">DNF — Dandified YUM</h3>
+                    <p class="text-xs text-brand-grayText leading-relaxed">
+                        Penerus <code class="text-brand-green font-mono font-bold">yum</code> dengan resolusi dependensi lebih cerdas. Format paket <code class="text-brand-green font-mono font-bold">.rpm</code> adalah standar enterprise Linux.
+                    </p>
+                    <div class="mt-4 space-y-2 font-mono text-xs">
+                        <div class="p-2.5 bg-[#1F1A16] text-[#7BC584] rounded-sm">
+                            <span class="text-[#88796B]"># Instal software</span><br>
+                            <span>sudo dnf install nginx</span>
+                        </div>
+                        <div class="p-2.5 bg-[#1F1A16] text-[#7BC584] rounded-sm">
+                            <span class="text-[#88796B]"># Update sistem</span><br>
+                            <span>sudo dnf upgrade --refresh</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- pacman -->
+                <div class="p-6 space-y-3">
+                    <div class="font-mono text-xs text-brand-ink font-bold uppercase">Keluarga Arch</div>
+                    <h3 class="text-lg font-bold font-serif text-brand-ink">Pacman + AUR</h3>
+                    <p class="text-xs text-brand-grayText leading-relaxed">
+                        Paket dikompilasi dari sumber. AUR (Arch User Repository) menyediakan puluhan ribu paket komunitas yang tidak ada di repo resmi.
+                    </p>
+                    <div class="mt-4 space-y-2 font-mono text-xs">
+                        <div class="p-2.5 bg-[#1F1A16] text-[#DDD3C1] rounded-sm">
+                            <span class="text-[#88796B]"># Instal software</span><br>
+                            <span>sudo pacman -S nginx</span>
+                        </div>
+                        <div class="p-2.5 bg-[#1F1A16] text-[#DDD3C1] rounded-sm">
+                            <span class="text-[#88796B]"># Update sistem</span><br>
+                            <span>sudo pacman -Syu</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Insight Box -->
+            <div class="p-5 bg-brand-cardAlt border-l-4 border-brand-amber flex gap-4 items-start">
+                <i class="fa-solid fa-lightbulb text-brand-amber mt-0.5 shrink-0"></i>
+                <div>
+                    <div class="text-xs font-mono font-bold text-brand-amber mb-1">INSIGHT PENTING</div>
+                    <p class="text-xs text-brand-grayText leading-relaxed">
+                        Meski package manager berbeda-beda, perintah shell POSIX (<code class="text-brand-amber font-mono font-bold">ls, cd, mkdir, cat, rm</code>) bekerja identik di semua distro. Ini karena semua menggunakan Kernel Linux yang sama dan standar POSIX yang universal.
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <!-- MATERI: DESKTOP ENVIRONMENT -->
+        <div class="space-y-6">
+            <div class="flex flex-col md:flex-row md:items-end justify-between gap-6 border-b border-brand-border pb-6">
+                <div>
+                    <div class="border-l-2 border-brand-amber pl-3 text-brand-amber font-mono text-xs font-bold uppercase tracking-wider mb-3">LAPISAN ANTARMUKA</div>
+                    <h2 class="text-2xl sm:text-3xl font-bold font-serif text-brand-ink">Desktop Environment: GUI Linux</h2>
+                </div>
+                <p class="text-sm text-brand-grayText max-w-sm leading-relaxed">Linux memisahkan kernel dari antarmuka grafis — Anda bebas memilih tampilan yang paling sesuai.</p>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 font-mono text-xs">
+                <div class="p-5 bg-brand-card border border-brand-border space-y-2">
+                    <div class="text-brand-amber font-bold">GNOME</div>
+                    <p class="text-brand-grayText font-sans text-xs leading-relaxed">Modern dan minimalis. Default di Ubuntu, Fedora, Debian. Cocok untuk layar HiDPI dan touchscreen.</p>
+                    <div class="pt-2 text-brand-muted text-[11px]">RAM idle: ~600MB</div>
+                </div>
+                <div class="p-5 bg-brand-card border border-brand-border space-y-2">
+                    <div class="text-brand-green font-bold">KDE Plasma</div>
+                    <p class="text-brand-grayText font-sans text-xs leading-relaxed">Sangat bisa dikustomisasi. Tampilan mirip Windows. Digunakan oleh Kubuntu dan openSUSE.</p>
+                    <div class="pt-2 text-brand-muted text-[11px]">RAM idle: ~400MB</div>
+                </div>
+                <div class="p-5 bg-brand-surface border border-brand-border space-y-2">
+                    <div class="text-brand-ink font-bold">XFCE</div>
+                    <p class="text-brand-grayText font-sans text-xs leading-relaxed">Ringan dan stabil. Pilihan utama Kali Linux dan Xubuntu untuk hardware lama atau server dengan GUI.</p>
+                    <div class="pt-2 text-brand-muted text-[11px]">RAM idle: ~220MB</div>
+                </div>
+                <div class="p-5 bg-brand-surface border border-brand-border space-y-2">
+                    <div class="text-brand-ink font-bold">Tanpa DE (Headless)</div>
+                    <p class="text-brand-grayText font-sans text-xs leading-relaxed">Server dan cloud tidak membutuhkan GUI sama sekali. Semua dioperasikan via SSH dan terminal.</p>
+                    <div class="pt-2 text-brand-muted text-[11px]">RAM idle: ~80MB</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- MATERI: CARA MEMILIH DISTRO -->
+        <div class="space-y-6">
+            <div class="border-l-2 border-brand-amber pl-3">
+                <div class="text-brand-amber font-mono text-xs font-bold uppercase tracking-wider mb-1">PANDUAN PRAKTIS</div>
+                <h2 class="text-2xl sm:text-3xl font-bold font-serif text-brand-ink">Bagaimana Cara Memilih Distro yang Tepat?</h2>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div class="space-y-3">
+                    <div class="flex gap-4 p-4 bg-brand-card border border-brand-border items-start">
+                        <span class="text-brand-amber font-mono font-bold text-lg shrink-0">01</span>
+                        <div>
+                            <div class="font-bold text-brand-ink text-sm mb-1">Tentukan Tujuan Utama</div>
+                            <p class="text-xs text-brand-grayText leading-relaxed">Desktop harian → Ubuntu/Mint. Developer → Fedora. Server → Debian/RHEL. Security research → Kali. PC jadul → Lubuntu.</p>
+                        </div>
+                    </div>
+                    <div class="flex gap-4 p-4 bg-brand-card border border-brand-border items-start">
+                        <span class="text-brand-amber font-mono font-bold text-lg shrink-0">02</span>
+                        <div>
+                            <div class="font-bold text-brand-ink text-sm mb-1">Periksa Spesifikasi Hardware</div>
+                            <p class="text-xs text-brand-grayText leading-relaxed">RAM &lt; 2GB → pilih Lubuntu atau antiX. RAM 4GB+ → semua distro mainstream berjalan nyaman.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="space-y-3">
+                    <div class="flex gap-4 p-4 bg-brand-card border border-brand-border items-start">
+                        <span class="text-brand-amber font-mono font-bold text-lg shrink-0">03</span>
+                        <div>
+                            <div class="font-bold text-brand-ink text-sm mb-1">Pertimbangkan Siklus Rilis</div>
+                            <p class="text-xs text-brand-grayText leading-relaxed">Ubuntu LTS: 5 tahun dukungan, stabil. Fedora: 13 bulan, selalu baru. Arch: rolling, selalu terbaru tapi perlu perawatan.</p>
+                        </div>
+                    </div>
+                    <div class="flex gap-4 p-4 bg-brand-card border border-brand-border items-start">
+                        <span class="text-brand-amber font-mono font-bold text-lg shrink-0">04</span>
+                        <div>
+                            <div class="font-bold text-brand-ink text-sm mb-1">Coba Dulu via Live USB</div>
+                            <p class="text-xs text-brand-grayText leading-relaxed">Semua distro bisa dijalankan langsung dari flashdisk tanpa instalasi. Coba 2–3 distro sebelum memutuskan.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
         <!-- NARRATIVE BRIDGE & NEXT NAVIGATION -->
         <div class="p-8 bg-brand-surface border border-brand-border space-y-6">
             <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-center">
